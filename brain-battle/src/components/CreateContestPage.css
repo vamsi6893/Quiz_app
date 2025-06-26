@@ -1,0 +1,212 @@
+.create-contest-container {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg, #f7f8fa);
+    color: var(--text, #222);
+    padding: 2rem 0;
+    overflow-y: auto;
+}
+
+.create-contest-container.dark {
+    --bg: #181c24;
+    --text: #f7f8fa;
+}
+
+.create-contest-main {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-contest-title {
+    color: #4f8cff;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.create-contest-form {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    padding: 2rem;
+    margin-top: 1rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.create-contest-container.dark .create-contest-form {
+    background: #23272f;
+    color: #f7f8fa;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+
+.create-contest-form input[type="text"],
+.create-contest-form input[type="number"],
+.create-contest-form textarea {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background: #fff;
+    color: #222;
+    transition: background 0.2s, color 0.2s;
+}
+
+.create-contest-container.dark .create-contest-form input[type="text"],
+.create-contest-container.dark .create-contest-form input[type="number"],
+.create-contest-container.dark .create-contest-form textarea {
+    background: #23272f;
+    color: #f7f8fa;
+    border: 1px solid #4f8cff;
+}
+
+.create-contest-form textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+.question-block {
+    margin: 18px 0;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f7f8fa;
+}
+
+.create-contest-container.dark .question-block {
+    background: #181c24;
+    border: 1px solid #4f8cff;
+}
+
+.option-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    gap: 0.5rem;
+}
+
+.option-row input[type="text"] {
+    flex: 1;
+}
+
+.option-row label {
+    font-weight: normal;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.add-question-btn {
+    margin-top: 0.7rem;
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.add-question-btn:hover {
+    background: #2563eb;
+}
+
+.added-questions-list {
+    margin: 1rem 0;
+}
+.added-question-item {
+    background: #f7f8fa;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.create-contest-container.dark .added-question-item {
+    background: #23272f;
+    color: #f7f8fa;
+}
+.remove-question-btn {
+    background: transparent;
+    border: none;
+    color: #ff5252;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.start-button {
+    margin-top: 16px;
+    width: 220px;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.start-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.auth-error {
+    color: #ff5252;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media (max-width: 900px) {
+    .create-contest-main {
+        max-width: 98vw;
+    }
+    .create-contest-form {
+        max-width: 98vw;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .create-contest-title {
+        font-size: 1.3rem;
+        padding: 0 0.5rem;
+    }
+    .create-contest-form {
+        padding: 0.5rem;
+        font-size: 0.98rem;
+    }
+    .start-button,
+    .add-question-btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.8rem 0;
+    }
+    .added-question-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        padding: 0.5rem 0.5rem;
+    }
+}

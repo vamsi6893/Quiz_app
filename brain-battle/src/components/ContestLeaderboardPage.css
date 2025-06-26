@@ -1,0 +1,121 @@
+.contest-leaderboard-container {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg, #f7f8fa);
+    color: var(--text, #222);
+    padding: 2rem 0;
+    overflow-y: auto;
+}
+
+.contest-leaderboard-container.dark {
+    --bg: #181c24;
+    --text: #f7f8fa;
+}
+
+.contest-leaderboard-main {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contest-leaderboard-title {
+    color: #4f8cff;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contest-leaderboard-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.contest-leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+
+.contest-leaderboard-table th,
+.contest-leaderboard-table td {
+    padding: 0.8rem 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.contest-leaderboard-table th {
+    background: #e3f0ff;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.contest-leaderboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.contest-leaderboard-container.dark .contest-leaderboard-table {
+    background: #23272f;
+    color: #f7f8fa;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+
+.contest-leaderboard-container.dark .contest-leaderboard-table th {
+    background: #1a2332;
+    color: #90caf9;
+}
+
+.contest-leaderboard-container.dark .contest-leaderboard-table td {
+    border-bottom: 1px solid #4f8cff;
+}
+
+.start-button {
+    width: 100%;
+    max-width: 320px;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.contest-leaderboard-container.dark .start-button {
+    background: #2563eb;
+    color: #fff;
+}
+
+.start-button:hover {
+    background: #2563eb;
+}
+
+@media (max-width: 600px) {
+    .contest-leaderboard-main {
+        max-width: 98vw;
+    }
+    .contest-leaderboard-title {
+        font-size: 1.3rem;
+        padding: 0 0.5rem;
+    }
+    .contest-leaderboard-table th,
+    .contest-leaderboard-table td {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.98rem;
+    }
+    .start-button {
+        font-size: 1rem;
+        padding: 0.8rem 0;
+    }
+}

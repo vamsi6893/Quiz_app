@@ -1,0 +1,113 @@
+.create-contest-container {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg, #f7f8fa);
+    color: var(--text, #222);
+    padding: 2rem 0;
+    overflow-y: auto;
+}
+
+.create-contest-container.dark {
+    --bg: #181c24;
+    --text: #f7f8fa;
+}
+
+.create-contest-main {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-contest-title {
+    color: #4f8cff;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.create-contest-link {
+    background: #f7f8fa;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    text-align: center;
+    word-break: break-all;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.create-contest-container.dark .create-contest-link {
+    background: #23272f;
+    border: 1px solid #4f8cff;
+    color: #90caf9;
+}
+
+.create-contest-link a {
+    display: block;
+    margin-top: 0.5rem;
+    color: inherit;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.share-link-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+}
+
+.start-button {
+    width: 100%;
+    max-width: 320px;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.create-contest-container.dark .start-button {
+    background: #2563eb;
+    color: #fff;
+}
+
+.start-button:hover {
+    background: #2563eb;
+}
+
+.start-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .create-contest-main {
+        max-width: 98vw;
+    }
+    .create-contest-title {
+        font-size: 1.3rem;
+        padding: 0 0.5rem;
+    }
+    .create-contest-link {
+        padding: 0.7rem;
+        font-size: 0.98rem;
+    }
+    .start-button {
+        font-size: 1rem;
+        padding: 0.8rem 0;
+    }
+}

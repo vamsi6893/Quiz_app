@@ -1,0 +1,218 @@
+.page-bg.light {
+    background: #f7f8fa;
+    color: #222;
+}
+
+.page-bg.dark {
+    background: #181c24;
+    color: #f7f8fa;
+}
+
+.page-bg {
+    min-height: 100vh;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.profile-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-info {
+    background: #f7f8fa;
+    color: #222;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 2rem 2.5rem;
+    min-width: 300px;
+    max-width: 400px;
+    width: 100%;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+.page-bg.dark .profile-info {
+    background: #23272f;
+    color: #f7f8fa;
+}
+
+.logout-btn {
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    background: #ff5252;
+    color: #fff;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #d32f2f;
+}
+
+.leaderboard-btn {
+    margin-top: 1rem;
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    background: #2563eb;
+    color: #fff;
+    transition: background 0.2s;
+}
+.leaderboard-btn:hover {
+    background: #1741a6;
+}
+
+/* Contest Table Styles */
+.my-contests-section {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.my-contests-table-wrapper {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    margin-top: 1rem;
+    -webkit-overflow-scrolling: touch;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.my-contests-table {
+    width: 100%;
+    min-width: 300px;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    white-space: nowrap;
+    font-size: 1rem;
+}
+
+.my-contests-table th,
+.my-contests-table td {
+    padding: 0.8rem 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1rem;
+    word-break: break-word;
+}
+
+.my-contests-table th {
+    background: #e3f0ff;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.my-contests-table tr:last-child td {
+    border-bottom: none;
+}
+
+.contest-leaderboard-btn {
+    padding: 0.4rem 1.2rem;
+    border-radius: 1.2rem;
+    border: none;
+    background: #4f8cff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: background 0.2s;
+    font-size: 1rem;
+}
+.contest-leaderboard-btn:hover {
+    background: #2563eb;
+}
+
+/* Dark mode for contest table */
+.page-bg.dark .my-contests-table {
+    background: #23272f;
+    color: #f7f8fa;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.page-bg.dark .my-contests-table th {
+    background: #1a2332;
+    color: #90caf9;
+}
+.page-bg.dark .my-contests-table td {
+    border-bottom: 1px solid #4f8cff;
+}
+.page-bg.dark .contest-leaderboard-btn {
+    background: #2563eb;
+    color: #fff;
+}
+.page-bg.dark .contest-leaderboard-btn:hover {
+    background: #1741a6;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+    .my-contests-table {
+        min-width: 400px;
+    }
+}
+@media (max-width: 700px) {
+    .my-contests-table {
+        min-width: 350px;
+        font-size: 0.95rem;
+    }
+    .my-contests-table th,
+    .my-contests-table td {
+        padding: 0.6rem 0.3rem;
+        font-size: 0.95rem;
+    }
+    .contest-leaderboard-btn {
+        font-size: 0.95rem;
+    }
+}
+@media (max-width: 500px) {
+    .my-contests-table-wrapper {
+        max-width: 100vw;
+        padding: 0 0.2rem;
+        max-height: 250px;
+    }
+    .my-contests-table {
+        min-width: 300px;
+        font-size: 0.92rem;
+    }
+    .my-contests-table th,
+    .my-contests-table td {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.92rem;
+    }
+    .contest-leaderboard-btn {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.92rem;
+    }
+}

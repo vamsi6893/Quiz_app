@@ -1,0 +1,77 @@
+.app-header {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem 0 2rem;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    color: var(--text, #222);
+    z-index: 10;
+    transition: color 0.3s;
+}
+
+.app-header.light {
+    --text: #222;
+}
+
+.app-header.dark {
+    --text: #f7f8fa;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text, #222);
+    text-decoration: none;
+}
+
+.header-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    color: var(--text, #222);
+    font-size: 1.7rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.profile-link:hover {
+    color: #2563eb;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text, #222);
+    margin-left: 1rem;
+    transition: color 0.2s;
+}
+
+@media (max-width: 600px) {
+    .app-header {
+        padding: 1rem 1rem 0 1rem;
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    .header-links {
+        gap: 1rem;
+    }
+    .profile-link {
+        font-size: 1.3rem;
+    }
+}

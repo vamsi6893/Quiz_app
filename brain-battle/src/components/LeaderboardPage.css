@@ -1,0 +1,118 @@
+.leaderboard-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4.5rem 1rem 2rem 1rem; /* Increased top padding for spacing below header */
+    width: 100%;
+    box-sizing: border-box;
+}
+.leaderboard-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.leaderboard-table {
+    width: 100%;
+    max-width: 500px;
+    border-collapse: collapse;
+    background: #f7f8fa;
+    color: #222;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    font-size: 1.1rem;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    word-break: break-word;
+}
+
+.leaderboard-table th {
+    background: #e0e0e0;
+}
+
+.leaderboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.page-bg.dark .leaderboard-table {
+    background: #23272f;
+    color: #f7f8fa;
+}
+
+.page-bg.dark .leaderboard-table th {
+    background: #181c24;
+}
+
+.leaderboard-loading {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .leaderboard-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    .leaderboard-table {
+        font-size: 0.95rem;
+        max-width: 100%;
+        min-width: 0;
+    }
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 0.6rem 0.4rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 0.4rem 0.2rem;
+        font-size: 0.85rem;
+    }
+    .leaderboard-title {
+        font-size: 1.1rem;
+    }
+}
+
+.leaderboard-categories {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.leaderboard-category-btn {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 2rem;
+    background: #e0e0e0;
+    color: #222;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.leaderboard-category-btn.active,
+.leaderboard-category-btn:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+.page-bg.dark .leaderboard-category-btn {
+    background: #23272f;
+    color: #f7f8fa;
+}
+
+.page-bg.dark .leaderboard-category-btn.active,
+.page-bg.dark .leaderboard-category-btn:hover {
+    background: #2563eb;
+    color: #fff;
+}
