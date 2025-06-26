@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ContestLeaderboardPage.css';
 
-const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
 const ContestLeaderboardPage = ({ theme }) => {
     const { id } = useParams();
