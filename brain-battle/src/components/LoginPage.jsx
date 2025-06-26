@@ -6,7 +6,7 @@ const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL || 'http://localhost:5
 
 const LoginPage = ({ theme }) => {
     const navigate = useNavigate();
-    const [usernameOrEmail, setUsernameOrEmail] = useState('');
+    const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -25,9 +25,10 @@ const LoginPage = ({ theme }) => {
             const res = await fetch(`${BACKEND_URL}/api/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ usernameOrEmail, password }),
+                body: JSON.stringify({ email, password }),
             });
             const data = await res.json();
+            console.log(data)
             if (!res.ok) {
                 setError(data.message || 'Login failed');
                 return;
@@ -46,8 +47,8 @@ const LoginPage = ({ theme }) => {
                 <input
                     type="text"
                     placeholder="Username or Email"
-                    value={usernameOrEmail}
-                    onChange={e => setUsernameOrEmail(e.target.value)}
+                    value={email}
+                    onChange={e => setemail(e.target.value)}
                     required
                 />
                 <input
