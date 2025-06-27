@@ -10,7 +10,7 @@
     transition: background 0.3s, color 0.3s;
     padding: 0;
     box-sizing: border-box;
-    overflow-y: auto;
+    /* Remove overflow-y: auto; */
 }
 
 .category-title {
