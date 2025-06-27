@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CategoryPage.css';
-import java from '../images/java.png';
+// import java from '../iages/java.png';
 const categories = [
-    { label: 'Java', value: 'java', img: 'src/images/java.png' },
+    { label: 'Java', value: 'java', img: 'java.png' },
     { label: 'C', value: 'c', img: 'src/images/c.png' },
     { label: 'MongoDB', value: 'mongodb', img: 'src/images/mongodb.png' },
     { label: 'Python', value: 'python', img: 'src/images/python.png' },
@@ -39,7 +39,7 @@ const CategoryPage = ({ theme = 'light' }) => {
                             role="button"
                             aria-label={`Select ${cat.label} quiz`}
                         >
-                            <img src={java} alt={cat.label} className="category-card-img" />
+                            <img src={cat.img} alt={cat.label} className="category-card-img" />
                             <span className="category-card-label">{cat.label}</span>
                         </div>
                     ))}
