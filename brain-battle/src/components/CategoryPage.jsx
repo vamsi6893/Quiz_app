@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CategoryPage.css';
+import axios from 'axios';
 // import java from '../iages/java.png';
 const categories = [
     { label: 'Java', value: 'java', img: 'java.png' },
