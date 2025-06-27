@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
+import axios from 'axios';
 
 const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
 const ProfilePage = ({ theme = 'light' }) => {
@@ -9,7 +10,50 @@ const ProfilePage = ({ theme = 'light' }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [myContests, setMyContests] = useState([]);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
+
+    const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
+    useEffect(() => {
+        const verifyToken = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigate('/login');
+                setIsAuthenticated(false);
+                return;
+            }
+
+            try {
+                const res = await axios.post(
+                    `${BACKEND_URL}/api/isAuthenticated`,
+                    { token },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        withCredentials: true,
+                    }
+                );
+
+
+                if (res.data.authenticated) {
+                    setIsAuthenticated(true);
+                } else {
+                    localStorage.removeItem('token');
+                     setIsAuthenticated(false);
+                    navigate('/login'); 
+                   
+                }
+            } catch (err) {
+                console.error('Auth check failed:', err);
+                setIsAuthenticated(false);
+                localStorage.removeItem('token');
+                navigate('/login'); // redirect if error
+            }
+        };
+
+        verifyToken();
+    }, [navigate]);
 
     useEffect(() => {
         const fetchProfile = async () => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CreateContestPage.css';
+import axios from 'axios';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
@@ -15,6 +16,49 @@ const CreateContestPage = ({ theme }) => {
     const [questions, setQuestions] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
+    useEffect(() => {
+        const verifyToken = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigate('/login');
+                setIsAuthenticated(false);
+                return;
+            }
+
+            try {
+                const res = await axios.post(
+                    `${BACKEND_URL}/api/isAuthenticated`,
+                    { token },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        withCredentials: true,
+                    }
+                );
+
+
+                if (res.data.authenticated) {
+                    setIsAuthenticated(true);
+                } else {
+                    localStorage.removeItem('token');
+                     setIsAuthenticated(false);
+                    navigate('/login'); 
+                   
+                }
+            } catch (err) {
+                console.error('Auth check failed:', err);
+                setIsAuthenticated(false);
+                localStorage.removeItem('token');
+                navigate('/login'); // redirect if error
+            }
+        };
+
+        verifyToken();
+    }, [navigate]);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
