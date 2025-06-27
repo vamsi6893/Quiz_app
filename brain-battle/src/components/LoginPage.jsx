@@ -37,7 +37,7 @@ const LoginPage = ({ theme }) => {
             localStorage.setItem('token', data.token);
             navigate('/'); 
         } catch (err) {
-            setError('Network error');
+            setError('Network error',err);
         }
     };
 
