@@ -1,5 +1,6 @@
 .page-bg.category-container {
     width: 100%;
+    min-height: 100vh;
     background: var(--bg, #f7f8fa);
     color: var(--text, #222);
     display: flex;
@@ -9,6 +10,7 @@
     transition: background 0.3s, color 0.3s;
     padding: 0;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .category-title {
