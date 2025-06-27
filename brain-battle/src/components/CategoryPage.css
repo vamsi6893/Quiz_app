@@ -1,6 +1,5 @@
 .page-bg.category-container {
-    min-height: 100vh;
-    min-width: 100vw;
+    width: 100%;
     background: var(--bg, #f7f8fa);
     color: var(--text, #222);
     display: flex;
