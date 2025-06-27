@@ -3,8 +3,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
 
-const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
-
+const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
 const ProfilePage = ({ theme = 'light' }) => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
