@@ -24,6 +24,7 @@ const LoginPage = ({ theme }) => {
         try {
             const res = await fetch(`${BACKEND_URL}/api/login`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
             });
