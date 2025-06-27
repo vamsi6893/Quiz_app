@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './LoginRegisterPage.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
@@ -17,20 +18,18 @@ const RegisterPage = ({ theme }) => {
         setError('');
         setSuccess('');
         try {
-            const res = await fetch(`${BACKEND_URL}/api/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, password }),
-            });
-            const data = await res.json();
-            if (!res.ok) {
-                setError(data.message || 'Registration failed');
-                return;
-            }
+            const res = await axios.post(
+                `${BACKEND_URL}/api/register`,
+                { username, email, password }
+            );
             setSuccess('Registration successful! You can now log in.');
             setTimeout(() => navigate('/login'), 1500);
         } catch (err) {
-            setError('Network error');
+            if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);
+            } else {
+                setError('Network error');
+            }
         }
     };
 

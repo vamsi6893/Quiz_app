@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './LoginRegisterPage.css';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const LoginPage = ({ theme }) => {
     const navigate = useNavigate();
@@ -22,22 +23,19 @@ const LoginPage = ({ theme }) => {
         e.preventDefault();
         setError('');
         try {
-            const res = await fetch(`${BACKEND_URL}/api/login`, {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
-            const data = await res.json();
-            console.log(data)
-            if (!res.ok) {
-                setError(data.message || 'Login failed');
-                return;
-            }
-            localStorage.setItem('token', data.token);
-            navigate('/'); 
+            const res = await axios.post(
+                `${BACKEND_URL}/api/login`,
+                { email, password },
+                { withCredentials: true }
+            );
+            localStorage.setItem('token', res.data.token);
+            navigate('/');
         } catch (err) {
-            setError(err);
+            if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);
+            } else {
+                setError('Network error');
+            }
         }
     };
 
