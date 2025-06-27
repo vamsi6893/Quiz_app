@@ -17,7 +17,7 @@ const HomePage = ({ theme }) => {
     const [quote, setQuote] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
-
+const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com"; 
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * quotes.length);
         setQuote(quotes[randomIndex]);
@@ -29,7 +29,7 @@ const HomePage = ({ theme }) => {
             if (storedUser) {
                 setUsername(storedUser);
             } else {
-                fetch(`${import.meta.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/profile`, {
+                fetch(`${BACKEND_URL}/api/profile`, {
                     headers: { Authorization: `Bearer ${token}` }
                 })
                     .then(res => res.json())
