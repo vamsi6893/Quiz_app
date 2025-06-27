@@ -4,9 +4,9 @@ import './CategoryPage.css';
 // import java from '../iages/java.png';
 const categories = [
     { label: 'Java', value: 'java', img: 'java.png' },
-    { label: 'C', value: 'c', img: 'src/images/c.png' },
-    { label: 'MongoDB', value: 'mongodb', img: 'src/images/mongodb.png' },
-    { label: 'Python', value: 'python', img: 'src/images/python.png' },
+    { label: 'C', value: 'c', img: 'c.png' },
+    { label: 'MongoDB', value: 'mongodb', img: 'mongodb.png' },
+    { label: 'Python', value: 'python', img: 'python.png' },
 ];
 
 const CategoryPage = ({ theme = 'light' }) => {
