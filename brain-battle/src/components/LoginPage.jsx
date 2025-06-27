@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LoginRegisterPage.css';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
 
 const LoginPage = ({ theme }) => {
     const navigate = useNavigate();
