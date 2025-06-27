@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CategoryPage.css';
 // import java from '../iages/java.png';
@@ -11,7 +11,7 @@ const categories = [
 
 const CategoryPage = ({ theme = 'light' }) => {
     const navigate = useNavigate();
-
+  const [authenticated,setIsAuthenticated] = useState(false);
     useEffect(() => {
         const token = localStorage.getItem('token');
         // If not logged in, redirect to login
@@ -24,6 +24,49 @@ const CategoryPage = ({ theme = 'light' }) => {
     const handleSelect = (course) => {
         navigate('/instructions', { state: { course } });
     };
+
+    useEffect(() => {
+        const verifyToken = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigate('/login');
+                setIsAuthenticated(false);
+                return;
+            }
+
+            try {
+                const res = await axios.post(
+                    `${BACKEND_URL}/api/isAuthenticated`,
+                    { token },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        withCredentials: true,
+                    }
+                );
+
+                console.log(res)
+
+                if (res.data.authenticated) {
+                    setIsAuthenticated(true);
+                } else {
+                    localStorage.removeItem('token');
+                     setIsAuthenticated(false);
+                    navigate('/login'); 
+                   
+                }
+            } catch (err) {
+                console.error('Auth check failed:', err);
+                setIsAuthenticated(false);
+                localStorage.removeItem('token');
+                navigate('/login'); // redirect if error
+            }
+        };
+
+        verifyToken();
+    }, [navigate]);
+
 
     return (
         <div className={`page-bg category-container ${theme}`}>
