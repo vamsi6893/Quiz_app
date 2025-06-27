@@ -17,26 +17,67 @@ const HomePage = ({ theme }) => {
     const [quote, setQuote] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
-const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com"; 
+    const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
     useEffect(() => {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        setQuote(quotes[randomIndex]);
-        const token = localStorage.getItem('token');
-        setIsLoggedIn(!!token);
+        const init = async () => {
+            // Random quote setup
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            setQuote(quotes[randomIndex]);
 
-        if (token) {
-            const storedUser = localStorage.getItem('username');
-            if (storedUser) {
-                setUsername(storedUser);
-            } else {
-                fetch(`${BACKEND_URL}/api/profile`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                })
-                    .then(res => res.json())
-                    .then(data => setUsername(data.username || ''))
-                    .catch(() => setUsername(''));
+            // Check token presence
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setIsLoggedIn(false);
+                return;
             }
-        }
+
+            try {
+                // Check token validity with isAuthenticated route
+                const res = await fetch(`${BACKEND_URL}/api/isAuthenticated`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    credentials: 'include', // if your backend uses cookies
+                    body: JSON.stringify({}),
+                });
+
+                const result = await res.json();
+
+                if (result.authenticated) {
+                    setIsLoggedIn(true);
+
+                    const storedUser = localStorage.getItem('username');
+                    if (storedUser) {
+                        setUsername(storedUser);
+                    } else {
+                        const profileRes = await fetch(`${BACKEND_URL}/api/profile`, {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                        });
+
+                        const profileData = await profileRes.json();
+                        setUsername(profileData.username || '');
+                    }
+                } else {
+                    // Invalid or expired token
+                    setIsLoggedIn(false);
+                    setUsername('');
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('username');
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                setIsLoggedIn(false);
+                setUsername('');
+                localStorage.removeItem('token');
+                localStorage.removeItem('username');
+            }
+        };
+
+        init();
     }, []);
 
     const handleStartQuiz = () => {
@@ -65,7 +106,7 @@ const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
                     style={{ marginTop: 12 }}
                     onClick={handleCreateContest}
                 >
-                     Create Quiz Contest
+                    Create Quiz Contest
                 </button>
                 {!isLoggedIn && (
                     <div className="home-auth-buttons">

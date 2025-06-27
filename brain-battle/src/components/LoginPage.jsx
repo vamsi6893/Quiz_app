@@ -10,7 +10,7 @@ const LoginPage = ({ theme }) => {
     const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
     // Redirect to category page if already logged in
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -38,6 +38,49 @@ const LoginPage = ({ theme }) => {
             }
         }
     };
+
+
+    useEffect(() => {
+        const verifyToken = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setIsAuthenticated(false);
+                return;
+            }
+
+            try {
+                const res = await axios.post(
+                    `${BACKEND_URL}/api/isAuthenticated`,
+                    { token },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        withCredentials: true,
+                    }
+                );
+
+                console.log(res)
+
+                if (res.data.authenticated) {
+                    navigate('/');
+                    setIsAuthenticated(true);
+                } else {
+                    setIsAuthenticated(false);
+                    localStorage.removeItem('token');
+                    navigate('/login'); // redirect if not authenticated
+                }
+            } catch (err) {
+                console.error('Auth check failed:', err);
+                setIsAuthenticated(false);
+                localStorage.removeItem('token');
+                navigate('/login'); // redirect if error
+            }
+        };
+
+        verifyToken();
+    }, [navigate]);
+
 
     return (
         <div className={`login-register-container ${theme}`}>

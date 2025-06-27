@@ -19,7 +19,6 @@ const ContestQuizPage = ({ theme }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [started, setStarted] = useState(false);
-    const [authChecked, setAuthChecked] = useState(false);
 
     useEffect(() => {
         // Require login and get username
@@ -33,16 +32,9 @@ const ContestQuizPage = ({ theme }) => {
         fetch(`${BACKEND_URL}/api/profile`, {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(res => {
-                if (!res.ok) throw new Error('Not authenticated');
-                return res.json();
-            })
+            .then(res => res.json())
             .then(profile => {
                 setUsername(profile.username || '');
-                setAuthChecked(true);
-            })
-            .catch(() => {
-                navigate('/login');
             });
 
         fetch(`${BACKEND_URL}/api/contest/${id}`)
@@ -134,7 +126,6 @@ const ContestQuizPage = ({ theme }) => {
         });
     };
 
-    if (!authChecked) return <div className={`page-bg contest-quiz-container ${theme}`}>Checking authentication...</div>;
     if (loading) return <div className={`page-bg contest-quiz-container ${theme}`}>Loading...</div>;
     if (error && !contest) return <div className={`page-bg contest-quiz-container ${theme}`}>{error}</div>;
     if (!contest) return null;
