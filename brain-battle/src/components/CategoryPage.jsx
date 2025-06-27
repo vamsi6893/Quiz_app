@@ -11,6 +11,7 @@ const categories = [
 ];
 
 const CategoryPage = ({ theme = 'light' }) => {
+    const BACKEND_URL = "https://quiz-backend-xbp8.onrender.com";
     const navigate = useNavigate();
   const [authenticated,setIsAuthenticated] = useState(false);
     useEffect(() => {
